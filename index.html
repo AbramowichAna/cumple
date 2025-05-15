@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎂 Fiesta Bizarra 🎂</title>
+    <style>
+      body {
+  text-align: center;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  background: #2c5364; /* Fondo liso */
+  color: #eee;
+  padding: 50px;
+}
+
+    
+
+      h1 {
+        font-size: 3rem;
+        color: #00ffff;
+        animation: bounce 1s infinite;
+      }
+
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+      }
+
+      #pregunta, #botones, #entradaRecital {
+        margin-top: 20px;
+        font-size: 1.2rem;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        margin: 10px;
+        border-radius: 20px;
+        cursor: pointer;
+        border: none;
+        transition: transform 0.3s;
+      }
+
+      button:disabled {
+        background-color: #444;
+        color: #888;
+        cursor: not-allowed;
+      }
+
+      button:hover:not(:disabled) {
+        transform: scale(1.1);
+        background-color: #00ffff;
+        color: #000;
+      }
+
+      #entradaRecital {
+        margin-top: 30px;
+        display: none;
+        animation: fadeIn 2s forwards;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      #mensaje {
+        margin-top: 20px;
+        font-size: 1.4rem;
+        color: #00ffff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎉 ¡Feliz Cumpleaños! 🎉</h1>
+    <canvas id="confetti"></canvas>
+
+    <p id="pregunta" style="display: none">¿Vamos a escuchar pensamientos juntos?</p>
+
+    <div id="botones" style="display: none">
+      <button id="btn-si">Sí</button>
+      <button id="btn-no" disabled>No</button>
+    </div>
+
+    <div id="entradaRecital">
+      <img
+        src="bag.jpeg"
+        alt="Entrada personalizada"
+        width="300"
+      />
+      <div id="mensaje">
+        <p>Reservate el 1ero de junio</p>
+        <p>Te amo muchoooo ❤️</p>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+      // Lanzar confetti al cargar
+      confetti({
+        particleCount: 300,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
+
+      // Mostrar pregunta y botones después de 3s
+      setTimeout(() => {
+        document.getElementById("pregunta").style.display = "block";
+        document.getElementById("botones").style.display = "block";
+      }, 3000);
+
+      // Al tocar "Sí", mostrar imagen de entrada y mensaje
+      document.getElementById("btn-si").addEventListener("click", () => {
+        const entrada = document.getElementById("entradaRecital");
+        entrada.style.display = "block";
+        confetti({
+          particleCount: 200,
+          spread: 80,
+          origin: { y: 0.4 }
+        });
+      });
+    </script>
+  </body>
+</html>
